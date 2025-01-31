@@ -1,5 +1,7 @@
 {
     {$FRANKENPHP_CONFIG}
+    auto_https off    # Menonaktifkan automatic HTTPS untuk development
+    local_certs      # Menggunakan sertifikat lokal
 }
 
 {$SERVER_NAME:localhost} {
@@ -24,5 +26,11 @@
         Permissions-Policy "interest-cohort=()"
         # Disable iframe usage
         X-Frame-Options "SAMEORIGIN"
+    }
+
+    # Log level untuk debugging
+    log {
+        level INFO
+        output stderr
     }
 }
