@@ -34,6 +34,8 @@ RUN php artisan config:cache && \
 # Copy the default FrankenPHP config
 COPY .frankenphp.php /app/.frankenphp.php
 
+COPY Caddyfile /app/Caddyfile
+
 
 EXPOSE 80
 
