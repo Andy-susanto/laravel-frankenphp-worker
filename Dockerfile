@@ -17,7 +17,13 @@ RUN apk add --no-cache \
 COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader && \
-    chmod -R 775 storage bootstrap/cache
+    chmod -R 775 storage bootstrap/cache && \
+    chown -R www-data:www-data /app
+
+# Cache configuration dan routes
+RUN php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache
 
 RUN php artisan octane:install --server=frankenphp
 
@@ -29,4 +35,4 @@ EXPOSE 80 8080
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=80","--admin-port=8080"]
+CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0","--admin-port=8080"]
