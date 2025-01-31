@@ -7,7 +7,7 @@ services:
         dockerfile: Dockerfile
       entrypoint: php artisan octane:frankenphp --max-requests=1
       ports:
-        - "8000:8000"
+        - "8080:8000"
       volumes:
         - .:/app
       env_file:
