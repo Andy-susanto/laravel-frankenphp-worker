@@ -31,12 +31,12 @@ RUN php artisan octane:install --server=frankenphp
 # Copy konfigurasi Supervisor
 # COPY supervisord.conf /etc/supervisord.conf
 
-EXPOSE 8000
+EXPOSE 3000 8080
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp","--port=3000","--admin-port=8080" , "--host=0.0.0.0"]
 
 # Add healthcheck
 # HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
