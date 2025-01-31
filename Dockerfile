@@ -37,6 +37,8 @@ COPY .frankenphp.php /app/.frankenphp.php
 
 EXPOSE 80
 
+CMD ["frankenphp", "--config", "/app/.frankenphp.php"]
+
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
