@@ -8,6 +8,7 @@ RUN apk add --no-cache \
     zip \
     libzip-dev \
     curl \
+    wget \
     supervisor && \
     docker-php-ext-configure zip && \
     docker-php-ext-install zip  && \
