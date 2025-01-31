@@ -22,9 +22,9 @@ RUN composer install --no-dev --optimize-autoloader && \
 RUN php artisan octane:install --server=frankenphp
 
 # Copy konfigurasi Supervisor
-COPY supervisord.conf /etc/supervisord.conf
+# COPY supervisord.conf /etc/supervisord.conf
 
-EXPOSE 80
+EXPOSE 80 8080
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
