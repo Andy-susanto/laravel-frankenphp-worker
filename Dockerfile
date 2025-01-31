@@ -1,7 +1,5 @@
 FROM dunglas/frankenphp:1.2.0-alpine
 
-ENV SERVER_NAME=":80"
-
 WORKDIR /app
 
 COPY . .
