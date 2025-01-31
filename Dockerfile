@@ -29,6 +29,6 @@ EXPOSE 80
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-# CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=80","--admin-port=8080"]
+CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=80","--admin-port=8080"]
 
-CMD ["frankenphp", "serve", "--port=80", "--workers=4","--admin-port=8080"]
+# CMD ["frankenphp", "serve", "--port=80", "--workers=4","--admin-port=8080"]
