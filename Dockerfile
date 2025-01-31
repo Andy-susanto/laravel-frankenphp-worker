@@ -1,8 +1,8 @@
-FROM dunglas/frankenphp:1.2.0-alpine
+FROM php:8.2-fpm
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN apk add --no-cache \
     zip \
@@ -16,6 +16,8 @@ RUN apk add --no-cache \
     mkdir -p /var/log/supervisor /var/run
 
 COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
+
+COPY composer.json composer.lock ./
 
 RUN composer install --no-dev --optimize-autoloader && \
     chmod -R 775 storage bootstrap/cache && \
@@ -39,7 +41,9 @@ RUN php artisan config:cache && \
 CMD ["frankenphp", "run", "--host", "0.0.0.0"]
 
 
-EXPOSE 80
+EXPOSE 3000
+
+CMD ["php-fpm"]
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
