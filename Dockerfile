@@ -26,20 +26,24 @@ RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache
 
-RUN php artisan octane:install --server=frankenphp
+# RUN php artisan octane:install --server=frankenphp
 
 # Copy konfigurasi Supervisor
 # COPY supervisord.conf /etc/supervisord.conf
 
-EXPOSE 3000 8080
+# Copy the default FrankenPHP config
+COPY .frankenphp.php /app/.frankenphp.php
+
+
+EXPOSE 80
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-ENTRYPOINT ["php", "artisan", "octane:frankenphp","--port=3000","--admin-port=8080" , "--host=0.0.0.0"]
+# ENTRYPOINT ["php", "artisan", "octane:frankenphp","--port=3000","--admin-port=8080" , "--host=0.0.0.0"]
 
 # Add healthcheck
-HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:3000/health || exit 1
+# HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
+#     CMD curl -f http://localhost:3000/health || exit 1
 
 # CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0","--admin-port=8080"]
