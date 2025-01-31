@@ -39,7 +39,7 @@ COPY Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
 
-CMD ["frankenphp"]
+CMD ["frankenphp","run","/etc/caddy/Caddyfile"]
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
