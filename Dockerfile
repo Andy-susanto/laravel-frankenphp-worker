@@ -36,4 +36,8 @@ EXPOSE 80 8000
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
+# Add healthcheck
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:80/health || exit 1
+
 CMD ["php", "artisan", "octane:start", "--server=frankenphp","--port=80", "--host=0.0.0.0","--admin-port=8080"]
