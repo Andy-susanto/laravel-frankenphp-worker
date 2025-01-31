@@ -2,7 +2,7 @@ FROM dunglas/frankenphp:1.2.0-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 
 RUN apk add --no-cache \
     zip \
@@ -28,5 +28,3 @@ EXPOSE 80
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
 CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=80","--admin-port=8080"]
-
-# CMD ["frankenphp", "serve", "--port=80", "--workers=4","--admin-port=8080"]
