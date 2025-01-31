@@ -1,8 +1,8 @@
 {
 	frankenphp
-    auto_https disable
-    http_port	80
-	https_port	0
+    auto_https off
+    disable_redirects
+    disable_certs
 }
 
 # The domain name of your server
