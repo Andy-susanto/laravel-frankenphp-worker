@@ -19,6 +19,8 @@ COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader && \
     chmod -R 775 storage bootstrap/cache
 
+RUN php artisan octane:install --server=frankenphp
+
 # Copy konfigurasi Supervisor
 COPY supervisord.conf /etc/supervisord.conf
 
