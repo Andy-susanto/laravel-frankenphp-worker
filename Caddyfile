@@ -1,6 +1,6 @@
 {
 	frankenphp
-    auto_https off
+    auto_https disable
 }
 
 # The domain name of your server
