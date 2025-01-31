@@ -1,9 +1,28 @@
 {
-  auto_https disable
+    {$FRANKENPHP_CONFIG}
 }
 
-:80 {
-  root * /app/public
-  php_fastcgi /run/php/php-fpm.sock
-  file_server
+{$SERVER_NAME:localhost} {
+    root * /app/public
+    php_server
+    encode zstd gzip
+    file_server
+
+    @websockets {
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @websockets 127.0.0.1:8080
+
+    # Keamanan headers
+    header {
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disable some features
+        Permissions-Policy "interest-cohort=()"
+        # Disable iframe usage
+        X-Frame-Options "SAMEORIGIN"
+    }
 }
