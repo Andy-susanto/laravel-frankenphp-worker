@@ -2,9 +2,14 @@ services:
     laravel_franken:
       container_name: laravel_franken
       image: image_laravel_franken
-      build: .
+      build:
+        context: .
+        dockerfile: Dockerfile
+      entrypoint: php artisan octane:frankenphp --max-requests=1
       ports:
         - "8000:8000"
+      volumes:
+        - .:/app
       env_file:
         - .env
       healthcheck:
