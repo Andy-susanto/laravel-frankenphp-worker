@@ -36,6 +36,8 @@ RUN php artisan config:cache && \
 
 # COPY Caddyfile /etc/caddy/Caddyfile
 
+CMD ["frankenphp", "run", "--host", "0.0.0.0"]
+
 
 EXPOSE 80
 
