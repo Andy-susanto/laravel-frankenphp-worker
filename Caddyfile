@@ -11,6 +11,7 @@ localhost {
 	root * public/
 	# Enable compression (optional)
 	encode zstd br gzip
+    tls off
 	# Execute PHP files from the public/ directory and serve assets
 	php_server {
 		try_files {path} index.php
