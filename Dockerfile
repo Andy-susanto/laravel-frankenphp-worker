@@ -24,6 +24,8 @@ RUN composer install --no-dev --optimize-autoloader && \
 # Copy konfigurasi Supervisor
 COPY supervisord.conf /etc/supervisord.conf
 
+EXPOSE 3000
+
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
