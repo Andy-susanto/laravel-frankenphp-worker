@@ -27,6 +27,6 @@ COPY supervisord.conf /etc/supervisord.conf
 EXPOSE 3000
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+# ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-# CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000"]
+CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=3000"]
