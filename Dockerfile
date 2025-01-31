@@ -32,9 +32,9 @@ RUN php artisan config:cache && \
 # COPY supervisord.conf /etc/supervisord.conf
 
 # Copy the default FrankenPHP config
-COPY .frankenphp.php /app/.frankenphp.php
+# COPY .frankenphp.php /app/.frankenphp.php
 
-COPY Caddyfile /etc/caddy/Caddyfile
+# COPY Caddyfile /etc/caddy/Caddyfile
 
 
 EXPOSE 80
