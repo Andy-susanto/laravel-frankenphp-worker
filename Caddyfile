@@ -1,8 +1,13 @@
 {
+	admin off
 	auto_https off
+	# Completely disable HTTP/3
+	servers {
+		protocol http/1.1 h2c
+	}
 }
 
-:80 {
+http:// {
 	root * /app/public
 	php_server
 	encode gzip
