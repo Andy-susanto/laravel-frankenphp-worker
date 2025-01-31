@@ -4,16 +4,18 @@ WORKDIR /app
 
 COPY . .
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
     zip \
-    libzip-dev \
-    curl \
-    wget \
-    supervisor && \
-    docker-php-ext-configure zip && \
-    docker-php-ext-install zip  && \
-    docker-php-ext-install pcntl && \
-    mkdir -p /var/log/supervisor /var/run
+    unzip \
+    git
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/freetype2 --with-jpeg-dir=/usr/include
+RUN docker-php-ext-install -j$(awk '/^processor/{print $3}' /proc/cpuinfo) gd pdo pdo_mysql zip
 
 COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
