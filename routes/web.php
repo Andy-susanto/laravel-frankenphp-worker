@@ -8,5 +8,5 @@ Route::get('/health', function () {
 });
 
 Route::get('/', function () {
-   return $_SERVER['REQUEST_TIME'];
+   return phpinfo();
 });
