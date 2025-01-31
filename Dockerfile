@@ -29,4 +29,4 @@ EXPOSE 3000
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=3000","--admin-port=8080"]
+CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=http://uggg8o44ggw4cwgsk8wo4k88.151.106.112.156.sslip.io", "--port=3000","--admin-port=8080"]
