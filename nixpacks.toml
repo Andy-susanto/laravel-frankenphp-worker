@@ -51,6 +51,7 @@ files = /etc/supervisor/conf.d/*.conf
 
 "worker-nginx.conf" = '''
 [program:worker-nginx]
+user=root
 process_name=%(program_name)s_%(process_num)02d
 command=nginx -c /etc/nginx.conf
 autostart=true
@@ -61,6 +62,7 @@ stderr_logfile=/var/log/worker-nginx.log
 
 "worker-phpfpm.conf" = '''
 [program:worker-phpfpm]
+user=root
 process_name=%(program_name)s_%(process_num)02d
 command=php-fpm -y /assets/php-fpm.conf -F
 autostart=true
