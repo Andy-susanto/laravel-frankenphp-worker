@@ -39,7 +39,7 @@ EXPOSE 3000 8080
 ENTRYPOINT ["php", "artisan", "octane:frankenphp","--port=3000","--admin-port=8080" , "--host=0.0.0.0"]
 
 # Add healthcheck
-# HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
-#     CMD curl -f http://localhost:80/health || exit 1
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:3000/health || exit 1
 
 # CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0","--admin-port=8080"]
