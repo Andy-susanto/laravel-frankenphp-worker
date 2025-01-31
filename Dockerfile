@@ -34,12 +34,12 @@ RUN php artisan config:cache && \
 # Copy the default FrankenPHP config
 COPY .frankenphp.php /app/.frankenphp.php
 
-COPY Caddyfile /app/Caddyfile
+COPY Caddyfile /etc/caddy/Caddyfile
 
 
 EXPOSE 80
 
-CMD ["frankenphp", "--config", "/app/Caddyfile"]
+CMD ["frankenphp", "--adapter", "caddyfile"]
 
 # Gunakan ENTRYPOINT dan CMD untuk menjalankan supervisor
 # ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
